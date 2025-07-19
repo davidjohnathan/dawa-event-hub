@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -62,7 +63,8 @@ const Hotels = () => {
         {/* Hotels Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {hotels.map((hotel) => (
-            <Card key={hotel.id} className="hover:shadow-card transition-shadow">
+            <Link key={hotel.id} to={`/hotels/${hotel.id}`}>
+              <Card className="hover:shadow-card transition-shadow cursor-pointer">
               <div className="aspect-video bg-muted rounded-t-lg"></div>
               <CardHeader>
                 <div className="flex justify-between items-start mb-2">
@@ -105,10 +107,11 @@ const Hotels = () => {
                 </div>
                 
                 <Button className="w-full mt-4 bg-hero hover:shadow-glow">
-                  Book Now
+                  View Details
                 </Button>
               </CardContent>
             </Card>
+            </Link>
           ))}
         </div>
       </div>
