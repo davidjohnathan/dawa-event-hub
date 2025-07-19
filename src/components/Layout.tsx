@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { 
   MapPin, 
@@ -10,8 +10,13 @@ import {
   Menu,
   X,
   User,
-  Globe
+  Globe,
+  LogOut
 } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+import { User as SupabaseUser } from '@supabase/supabase-js';
+import { AuthModals } from '@/components/AuthModals';
+import { useToast } from '@/hooks/use-toast';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -19,6 +24,42 @@ interface LayoutProps {
 
 export function Layout({ children }: LayoutProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSignInOpen, setIsSignInOpen] = useState(false);
+  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
+  const [user, setUser] = useState<SupabaseUser | null>(null);
+  const { toast } = useToast();
+
+  useEffect(() => {
+    // Get initial session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+    });
+
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        setUser(session?.user ?? null);
+      }
+    );
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleSignOut = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      toast({
+        title: 'Error signing out',
+        description: error.message,
+        variant: 'destructive',
+      });
+    } else {
+      toast({
+        title: 'Signed out',
+        description: 'You have been successfully signed out.',
+      });
+    }
+  };
 
   const navigation = [
     { name: 'Events', href: '/events', icon: Calendar },
@@ -62,13 +103,27 @@ export function Layout({ children }: LayoutProps) {
                 <Globe className="h-4 w-4 mr-2" />
                 EN
               </Button>
-              <Button variant="outline" size="sm">
-                <User className="h-4 w-4 mr-2" />
-                Login
-              </Button>
-              <Button size="sm" className="bg-hero hover:shadow-glow">
-                Sign Up
-              </Button>
+              {user ? (
+                <div className="flex items-center space-x-2">
+                  <span className="text-sm text-foreground">
+                    {user.email}
+                  </span>
+                  <Button variant="outline" size="sm" onClick={handleSignOut}>
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Sign Out
+                  </Button>
+                </div>
+              ) : (
+                <>
+                  <Button variant="outline" size="sm" onClick={() => setIsSignInOpen(true)}>
+                    <User className="h-4 w-4 mr-2" />
+                    Login
+                  </Button>
+                  <Button size="sm" className="bg-hero hover:shadow-glow" onClick={() => setIsSignUpOpen(true)}>
+                    Sign Up
+                  </Button>
+                </>
+              )}
             </div>
 
             {/* Mobile menu button */}
@@ -98,12 +153,21 @@ export function Layout({ children }: LayoutProps) {
                   </a>
                 ))}
                 <div className="flex space-x-2 px-4 pt-2">
-                  <Button variant="outline" size="sm" className="flex-1">
-                    Login
-                  </Button>
-                  <Button size="sm" className="flex-1 bg-hero">
-                    Sign Up
-                  </Button>
+                  {user ? (
+                    <Button variant="outline" size="sm" className="flex-1" onClick={handleSignOut}>
+                      <LogOut className="h-4 w-4 mr-2" />
+                      Sign Out
+                    </Button>
+                  ) : (
+                    <>
+                      <Button variant="outline" size="sm" className="flex-1" onClick={() => setIsSignInOpen(true)}>
+                        Login
+                      </Button>
+                      <Button size="sm" className="flex-1 bg-hero" onClick={() => setIsSignUpOpen(true)}>
+                        Sign Up
+                      </Button>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
@@ -115,6 +179,14 @@ export function Layout({ children }: LayoutProps) {
       <main className="flex-1">
         {children}
       </main>
+
+      {/* Auth Modals */}
+      <AuthModals
+        isSignInOpen={isSignInOpen}
+        isSignUpOpen={isSignUpOpen}
+        onSignInClose={() => setIsSignInOpen(false)}
+        onSignUpClose={() => setIsSignUpOpen(false)}
+      />
 
       {/* Footer */}
       <footer className="bg-card border-t mt-16">
