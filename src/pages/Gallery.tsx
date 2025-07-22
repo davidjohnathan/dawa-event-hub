@@ -34,7 +34,7 @@ const Gallery = () => {
       category: "Nature",
       type: "photo",
       date: "December 2023",
-      image: "photo-1470813740244-df37b8c1edcb"
+      image: "photo-1500673922987-e212871fec22"
     },
     {
       id: 5,
@@ -67,6 +67,102 @@ const Gallery = () => {
       type: "photo",
       date: "August 2023",
       image: "photo-1496307653780-42ee777d4833"
+    },
+    {
+      id: 9,
+      title: "Mountain Views from Dire Dawa",
+      category: "Nature",
+      type: "photo",
+      date: "July 2023",
+      image: "photo-1501854140801-50d01698950b"
+    },
+    {
+      id: 10,
+      title: "Traditional Wedding Celebration",
+      category: "Culture",
+      type: "video",
+      date: "June 2023",
+      image: "photo-1466442929976-97f336a657be"
+    },
+    {
+      id: 11,
+      title: "Modern Dire Dawa Buildings",
+      category: "Architecture",
+      type: "photo",
+      date: "May 2023",
+      image: "photo-1518005020951-eccb494ad742"
+    },
+    {
+      id: 12,
+      title: "Wildlife Near the City",
+      category: "Nature",
+      type: "photo",
+      date: "April 2023",
+      image: "photo-1472396961693-142e6e269027"
+    },
+    {
+      id: 13,
+      title: "Tech Innovation Hub",
+      category: "Technology",
+      type: "photo",
+      date: "March 2023",
+      image: "photo-1486312338219-ce68d2c6f44d"
+    },
+    {
+      id: 14,
+      title: "Local Music Performance",
+      category: "Culture",
+      type: "video",
+      date: "February 2023",
+      image: "photo-1439886183900-e79ec0057170"
+    },
+    {
+      id: 15,
+      title: "Business District at Night",
+      category: "Architecture",
+      type: "photo",
+      date: "January 2023",
+      image: "photo-1492321936769-b49830bc1d1e"
+    },
+    {
+      id: 16,
+      title: "Street Art and Murals",
+      category: "Art",
+      type: "photo",
+      date: "December 2022",
+      image: "photo-1487252665478-49b61b47f302"
+    },
+    {
+      id: 17,
+      title: "Farmers Market Day",
+      category: "Culture",
+      type: "photo",
+      date: "November 2022",
+      image: "photo-1465379944081-7f47de8d74ac"
+    },
+    {
+      id: 18,
+      title: "Youth Sports Tournament",
+      category: "Sports",
+      type: "video",
+      date: "October 2022",
+      image: "photo-1438565434616-3ef039228b15"
+    },
+    {
+      id: 19,
+      title: "Traditional Handicrafts",
+      category: "Crafts",
+      type: "photo",
+      date: "September 2022",
+      image: "photo-1469041797191-50ace28483c3"
+    },
+    {
+      id: 20,
+      title: "Community Garden Project",
+      category: "Community",
+      type: "photo",
+      date: "August 2022",
+      image: "photo-1615729947596-a598e5de0ab3"
     }
   ];
 
@@ -86,7 +182,7 @@ const Gallery = () => {
 
         {/* Filter Tabs */}
         <div className="flex flex-wrap justify-center gap-4 mb-8">
-          {["All", "Events", "Culture", "Architecture", "Nature", "Food"].map((filter) => (
+          {["All", "Events", "Culture", "Architecture", "Nature", "Food", "Technology", "Art", "Sports", "Community", "Crafts"].map((filter) => (
             <Badge key={filter} variant="outline" className="cursor-pointer hover:bg-primary hover:text-primary-foreground">
               {filter}
             </Badge>

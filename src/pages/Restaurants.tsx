@@ -15,7 +15,8 @@ const Restaurants = () => {
       cuisine: "Ethiopian",
       location: "Central Market Area",
       hours: "11:00 AM - 10:00 PM",
-      specialties: ["Doro Wat", "Injera", "Kitfo"]
+      specialties: ["Doro Wat", "Injera", "Kitfo"],
+      image: "photo-1618160702438-9b02ab6515c9"
     },
     {
       id: 2,
@@ -26,7 +27,8 @@ const Restaurants = () => {
       cuisine: "Coffee & Cafe",
       location: "Railway District",
       hours: "6:00 AM - 9:00 PM",
-      specialties: ["Ethiopian Coffee", "Pastries", "Light Meals"]
+      specialties: ["Ethiopian Coffee", "Pastries", "Light Meals"],
+      image: "photo-1501286353178-1ec881214838"
     },
     {
       id: 3,
@@ -37,7 +39,8 @@ const Restaurants = () => {
       cuisine: "Somali",
       location: "Megala District",
       hours: "12:00 PM - 11:00 PM",
-      specialties: ["Basmati Rice", "Grilled Goat", "Halwa"]
+      specialties: ["Basmati Rice", "Grilled Goat", "Halwa"],
+      image: "photo-1452960962994-acf4fd70b632"
     },
     {
       id: 4,
@@ -48,7 +51,56 @@ const Restaurants = () => {
       cuisine: "French",
       location: "Historic District",
       hours: "5:00 PM - 12:00 AM",
-      specialties: ["Coq au Vin", "Ratatouille", "Wine Selection"]
+      specialties: ["Coq au Vin", "Ratatouille", "Wine Selection"],
+      image: "photo-1466721591366-2d5fba72006d"
+    },
+    {
+      id: 5,
+      name: "Spice Garden Indian",
+      description: "Aromatic Indian cuisine with authentic spices and flavors, featuring both vegetarian and meat dishes.",
+      rating: 4.5,
+      priceRange: "$$",
+      cuisine: "Indian",
+      location: "International Quarter",
+      hours: "12:00 PM - 10:30 PM",
+      specialties: ["Biryani", "Curry", "Naan"],
+      image: "photo-1493962853295-0fd70327578a"
+    },
+    {
+      id: 6,
+      name: "Mediterranean Terrace",
+      description: "Fresh Mediterranean dishes with a focus on healthy ingredients, grilled meats, and seafood.",
+      rating: 4.2,
+      priceRange: "$$",
+      cuisine: "Mediterranean",
+      location: "Uptown",
+      hours: "11:30 AM - 11:00 PM",
+      specialties: ["Grilled Fish", "Hummus", "Greek Salad"],
+      image: "photo-1518877593221-1f28583780b4"
+    },
+    {
+      id: 7,
+      name: "Local Street Eats",
+      description: "Popular street food spot offering traditional snacks, fresh juices, and quick meals for locals and tourists.",
+      rating: 4.0,
+      priceRange: "$",
+      cuisine: "Street Food",
+      location: "Main Market",
+      hours: "7:00 AM - 8:00 PM",
+      specialties: ["Sambusa", "Fresh Juice", "Roasted Corn"],
+      image: "photo-1465379944081-7f47de8d74ac"
+    },
+    {
+      id: 8,
+      name: "Royal Palace Restaurant",
+      description: "Upscale dining experience featuring a fusion of Ethiopian and international cuisines in an elegant setting.",
+      rating: 4.7,
+      priceRange: "$$$",
+      cuisine: "Fusion",
+      location: "Premium District",
+      hours: "6:00 PM - 12:00 AM",
+      specialties: ["Tasting Menu", "Wine Pairing", "Fusion Dishes"],
+      image: "photo-1439337153520-7082a56a81f4"
     }
   ];
 
@@ -70,7 +122,13 @@ const Restaurants = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {restaurants.map((restaurant) => (
             <Card key={restaurant.id} className="hover:shadow-card transition-shadow">
-              <div className="aspect-video bg-muted rounded-t-lg"></div>
+              <div className="aspect-video bg-muted rounded-t-lg relative overflow-hidden">
+                <img 
+                  src={`https://images.unsplash.com/${restaurant.image}?auto=format&fit=crop&w=600&q=80`}
+                  alt={restaurant.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <CardHeader>
                 <div className="flex justify-between items-start mb-2">
                   <div className="flex items-center">

@@ -13,7 +13,8 @@ const Blog = () => {
       date: "March 15, 2024",
       category: "Travel Guide",
       readTime: "5 min read",
-      featured: true
+      featured: true,
+      image: "photo-1506744038136-46273834b3fb"
     },
     {
       id: 2,
@@ -23,7 +24,8 @@ const Blog = () => {
       date: "March 12, 2024",
       category: "Culture",
       readTime: "7 min read",
-      featured: false
+      featured: false,
+      image: "photo-1501286353178-1ec881214838"
     },
     {
       id: 3,
@@ -33,7 +35,8 @@ const Blog = () => {
       date: "March 10, 2024",
       category: "History",
       readTime: "6 min read",
-      featured: false
+      featured: false,
+      image: "photo-1488972685288-c3fd157d7c7a"
     },
     {
       id: 4,
@@ -43,7 +46,8 @@ const Blog = () => {
       date: "March 8, 2024",
       category: "Food",
       readTime: "4 min read",
-      featured: true
+      featured: true,
+      image: "photo-1618160702438-9b02ab6515c9"
     },
     {
       id: 5,
@@ -53,7 +57,8 @@ const Blog = () => {
       date: "March 5, 2024",
       category: "Architecture",
       readTime: "8 min read",
-      featured: false
+      featured: false,
+      image: "photo-1496307653780-42ee777d4833"
     },
     {
       id: 6,
@@ -63,7 +68,74 @@ const Blog = () => {
       date: "March 3, 2024",
       category: "Community",
       readTime: "6 min read",
-      featured: false
+      featured: false,
+      image: "photo-1465379944081-7f47de8d74ac"
+    },
+    {
+      id: 7,
+      title: "Digital Transformation in Dire Dawa",
+      excerpt: "How technology is reshaping business and daily life in Dire Dawa, from mobile banking to digital marketplaces.",
+      author: "Tekle Worku",
+      date: "March 1, 2024",
+      category: "Technology",
+      readTime: "5 min read",
+      featured: false,
+      image: "photo-1486312338219-ce68d2c6f44d"
+    },
+    {
+      id: 8,
+      title: "Youth Entrepreneurship Rising",
+      excerpt: "Meet the young entrepreneurs who are creating innovative businesses and driving economic growth in Dire Dawa.",
+      author: "Sara Mohammed",
+      date: "February 28, 2024",
+      category: "Business",
+      readTime: "6 min read",
+      featured: false,
+      image: "photo-1498050108023-c5249f4df085"
+    },
+    {
+      id: 9,
+      title: "Sustainable Tourism in Dire Dawa",
+      excerpt: "Exploring eco-friendly tourism initiatives that preserve our natural beauty while supporting local communities.",
+      author: "Dawit Negash",
+      date: "February 25, 2024",
+      category: "Environment",
+      readTime: "7 min read",
+      featured: false,
+      image: "photo-1500673922987-e212871fec22"
+    },
+    {
+      id: 10,
+      title: "Art and Culture Revival Movement",
+      excerpt: "The renaissance of traditional arts and crafts in Dire Dawa, supported by young artists and cultural activists.",
+      author: "Zara Ibrahim",
+      date: "February 22, 2024",
+      category: "Arts",
+      readTime: "5 min read",
+      featured: false,
+      image: "photo-1439337153520-7082a56a81f4"
+    },
+    {
+      id: 11,
+      title: "Women Leadership in Local Government",
+      excerpt: "Celebrating the increasing role of women in Dire Dawa's governance and their impact on community development.",
+      author: "Hanan Ahmed",
+      date: "February 20, 2024",
+      category: "Politics",
+      readTime: "8 min read",
+      featured: false,
+      image: "photo-1581091226825-a6a2a5aee158"
+    },
+    {
+      id: 12,
+      title: "Sports Development Programs",
+      excerpt: "How sports initiatives are bringing youth together and creating opportunities for athletic excellence in Dire Dawa.",
+      author: "Abdi Osman",
+      date: "February 18, 2024",
+      category: "Sports",
+      readTime: "4 min read",
+      featured: false,
+      image: "photo-1438565434616-3ef039228b15"
     }
   ];
 
@@ -91,7 +163,13 @@ const Blog = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {featuredPosts.map((post) => (
                 <Card key={post.id} className="hover:shadow-card transition-shadow cursor-pointer group">
-                  <div className="aspect-video bg-muted rounded-t-lg"></div>
+                  <div className="aspect-video bg-muted rounded-t-lg relative overflow-hidden">
+                    <img 
+                      src={`https://images.unsplash.com/${post.image}?auto=format&fit=crop&w=600&q=80`}
+                      alt={post.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                   <CardHeader>
                     <div className="flex justify-between items-start mb-2">
                       <Badge variant="secondary">{post.category}</Badge>
@@ -130,7 +208,13 @@ const Blog = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {regularPosts.map((post) => (
               <Card key={post.id} className="hover:shadow-card transition-shadow cursor-pointer group">
-                <div className="aspect-video bg-muted rounded-t-lg"></div>
+                <div className="aspect-video bg-muted rounded-t-lg relative overflow-hidden">
+                  <img 
+                    src={`https://images.unsplash.com/${post.image}?auto=format&fit=crop&w=600&q=80`}
+                    alt={post.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <CardHeader>
                   <div className="flex justify-between items-start mb-2">
                     <Badge variant="outline">{post.category}</Badge>
