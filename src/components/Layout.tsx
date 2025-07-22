@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom'; // Added Link import for client-side routing
 import { 
   MapPin, 
   Calendar, 
@@ -83,17 +84,17 @@ export function Layout({ children }: LayoutProps) {
               </div>
             </div>
 
-            {/* Desktop Navigation */}
+            {/* Desktop Navigation - replaced <a> tags with <Link> for SPA navigation */}
             <div className="hidden md:flex items-center space-x-8">
               {navigation.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
+                  to={item.href} // changed from href to to
                   className="flex items-center space-x-1 text-foreground hover:text-primary transition-colors"
                 >
                   <item.icon className="h-4 w-4" />
                   <span>{item.name}</span>
-                </a>
+                </Link>
               ))}
             </div>
 
@@ -138,19 +139,19 @@ export function Layout({ children }: LayoutProps) {
             </div>
           </div>
 
-          {/* Mobile Navigation */}
+          {/* Mobile Navigation - replaced <a> tags with <Link> */}
           {isMenuOpen && (
             <div className="md:hidden py-4 border-t">
               <div className="flex flex-col space-y-2">
                 {navigation.map((item) => (
-                  <a
+                  <Link
                     key={item.name}
-                    href={item.href}
+                    to={item.href} // changed from href to to
                     className="flex items-center space-x-2 px-4 py-2 text-foreground hover:bg-muted rounded-md"
                   >
                     <item.icon className="h-4 w-4" />
                     <span>{item.name}</span>
-                  </a>
+                  </Link>
                 ))}
                 <div className="flex space-x-2 px-4 pt-2">
                   {user ? (
@@ -188,7 +189,7 @@ export function Layout({ children }: LayoutProps) {
         onSignUpClose={() => setIsSignUpOpen(false)}
       />
 
-      {/* Footer */}
+      {/* Footer - replaced <a> tags with <Link> */}
       <footer className="bg-card border-t mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -204,28 +205,28 @@ export function Layout({ children }: LayoutProps) {
             <div>
               <h3 className="font-semibold mb-3">Explore</h3>
               <ul className="space-y-2 text-muted-foreground">
-                <li><a href="/events" className="hover:text-primary">Events</a></li>
-                <li><a href="/hotels" className="hover:text-primary">Hotels</a></li>
-                <li><a href="/restaurants" className="hover:text-primary">Restaurants</a></li>
-                <li><a href="/gallery" className="hover:text-primary">Gallery</a></li>
+                <li><Link to="/events" className="hover:text-primary">Events</Link></li>
+                <li><Link to="/hotels" className="hover:text-primary">Hotels</Link></li>
+                <li><Link to="/restaurants" className="hover:text-primary">Restaurants</Link></li>
+                <li><Link to="/gallery" className="hover:text-primary">Gallery</Link></li>
               </ul>
             </div>
             
             <div>
               <h3 className="font-semibold mb-3">Community</h3>
               <ul className="space-y-2 text-muted-foreground">
-                <li><a href="/fundraising" className="hover:text-primary">Fundraising</a></li>
-                <li><a href="/blog" className="hover:text-primary">Blog</a></li>
-                <li><a href="/reviews" className="hover:text-primary">Reviews</a></li>
+                <li><Link to="/fundraising" className="hover:text-primary">Fundraising</Link></li>
+                <li><Link to="/blog" className="hover:text-primary">Blog</Link></li>
+                <li><Link to="/reviews" className="hover:text-primary">Reviews</Link></li>
               </ul>
             </div>
             
             <div>
               <h3 className="font-semibold mb-3">Support</h3>
               <ul className="space-y-2 text-muted-foreground">
-                <li><a href="/help" className="hover:text-primary">Help Center</a></li>
-                <li><a href="/contact" className="hover:text-primary">Contact Us</a></li>
-                <li><a href="/about" className="hover:text-primary">About</a></li>
+                <li><Link to="/help" className="hover:text-primary">Help Center</Link></li>
+                <li><Link to="/contact" className="hover:text-primary">Contact Us</Link></li>
+                <li><Link to="/about" className="hover:text-primary">About</Link></li>
               </ul>
             </div>
           </div>
