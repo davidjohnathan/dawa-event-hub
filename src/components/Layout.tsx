@@ -80,7 +80,7 @@ export function Layout({ children }: LayoutProps) {
             {/* Logo */}
             <div className="flex items-center">
               <div className="text-2xl font-bold bg-hero bg-clip-text text-transparent">
-                NuDire
+                <Link to="/" className="hover:text-primary">NuDire</Link>
               </div>
             </div>
 
